@@ -1424,6 +1424,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 log_title: "📋 系統操作日誌",
 
                 connecting_cloud: "正在連接雲端資料庫...",
+                connected_cloud: "✅ 已連線雲端資料庫",
 
                 unit: "單位",
                 device: "設備",
@@ -1537,6 +1538,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 report_title: "📄 สร้างรายงานทางการ",
                 log_title: "📋 บันทึกระบบ",
                 connecting_cloud: "กำลังเชื่อมต่อฐานข้อมูลคลาวด์...",
+                connected_cloud: "✅ เชื่อมต่อฐานข้อมูลคลาวด์แล้ว",
 
                 unit: "หน่วย",
                 device: "อุปกรณ์",
@@ -1606,7 +1608,9 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
             if (btnLoginText) btnLoginText.textContent = t('login_btn');
             
             safeSetText('ui_login_admin', t('login_admin'));
-            safeSetText('cloudInitMsg', t('connecting_cloud'));
+            const cloudLedEl = document.getElementById('cloudLed');
+            const isConnected = cloudLedEl && cloudLedEl.classList.contains('bg-[#34c759]');
+            safeSetText('cloudInitMsg', t(isConnected ? 'connected_cloud' : 'connecting_cloud'));
             const unitCode = document.getElementById('loginUnitCode');
             if(unitCode) unitCode.placeholder = t('login_unit_ph');
             const passCode = document.getElementById('loginPassword');
@@ -1992,7 +1996,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
 
                 onFileLoaded("Shared Cloud DB");
                 setDirty(false);
-                safeSetText('cloudInitMsg', "已連線雲端資料庫");
+                safeSetText('cloudInitMsg', t('connected_cloud'));
                 const cloudLed = document.getElementById('cloudLed');
                 if (cloudLed) {
                     cloudLed.classList.remove('bg-yellow-500', 'animate-pulse');
