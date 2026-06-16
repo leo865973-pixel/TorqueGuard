@@ -1670,6 +1670,16 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
             }
         }
 
+        let adminOverrideLang = null; // store admin-specific lang preference
+
+        function switchAdminLang(lang) {
+            adminOverrideLang = lang;
+            currentLang = lang; // override globally temporarily for admin panel
+            updateAdminLangUI();
+            updateUIStrings();
+            renderAdminLists(); // re-render dynamically
+        }
+
         function changeLang(lang) {
             currentLang = lang;
             updateUIStrings();
