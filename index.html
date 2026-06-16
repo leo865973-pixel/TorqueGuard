@@ -3379,6 +3379,8 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                     logOperation('LOG_DELETE', `刪除校驗紀錄: ${code} (${timestamp})`);
                     setDirty(true);
                     refreshLogs();
+                    if (typeof refreshDashboard === 'function') refreshDashboard();
+                    if (typeof refreshExpiryBanner === 'function') refreshExpiryBanner();
                 }
             });
         }
@@ -4076,6 +4078,8 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                     setDirty(true);
                     searchHistory();
                     refreshLogs();
+                    if (typeof refreshDashboard === 'function') refreshDashboard();
+                    if (typeof refreshExpiryBanner === 'function') refreshExpiryBanner();
                 }
             });
         }
