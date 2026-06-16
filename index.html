@@ -470,9 +470,8 @@
                 <div class="w-12 h-12 bg-[#007aff]/10 rounded-full flex items-center justify-center shrink-0 text-2xl">
                     📈</div>
                 <div>
-                    <p class="text-xs text-[#86868b] font-bold uppercase tracking-wider">週期進度 / Progress</p>
-                    <p class="text-xl font-black text-[#1d1d1f] tracking-tight leading-tight mt-0.5">已完成 <span
-                            id="dashToday" class="text-[#007aff]">--</span> 把</p>
+                    <p id="ui_cycle_progress_title" class="text-xs text-[#86868b] font-bold uppercase tracking-wider">週期進度</p>
+                    <p class="text-xl font-black text-[#1d1d1f] tracking-tight leading-tight mt-0.5"><span id="ui_completed_prefix">已完成</span> <span id="dashToday" class="text-[#007aff]">--</span> <span id="ui_progress_unit">把</span></p>
                 </div>
             </div>
             <div class="flex-grow max-w-2xl w-full flex flex-col justify-center gap-2 px-0 sm:px-4">
@@ -1464,7 +1463,36 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 waiting_conn: "● 等待連線",
                 connected_rs232: "✅ 校驗器已連線",
                 ready: "READY",
-                wait: "WAIT"
+                wait: "WAIT",
+                cycle_progress_title: "週期進度",
+                completed_prefix: "已完成",
+                progress_unit: "把",
+                cycle_done: "✅ 本週期已達標",
+                cycle_remain: "⏳ 本週期尚需",
+                cycle_remain_unit: "次",
+                manual_guide_title: "📖 操作教學與流程指南",
+                manual_step1_title: "設備連線與準備",
+                manual_step1_1: "1. 使用 USB 傳輸線將「扭力校驗器 (扭力計)」連接至電腦。",
+                manual_step1_2: "2. 在主畫面右方的「執行校驗」面板，點擊 📡 校驗器連線 按鈕。",
+                manual_step1_3: "3. 若瀏覽器彈出授權視窗，請選擇對應的 COM Port 並允許連線。",
+                manual_step1_4: "4. 連線成功後，按鈕會亮起綠色邊框與 ✅ 符號，代表系統已準備好接收數據。",
+                manual_step1_tip: "💡 提示：若您當下無法連接實體傳輸線，可以跳過此步驟，直接進入下一步進行手動刷讀與填寫。",
+                manual_step2_title: "刷讀與校驗流程",
+                manual_step2_1: "1. 將游標停留在左側「請刷讀扳手 QR Code」的輸入框中。",
+                manual_step2_2: "2. 使用條碼掃描槍刷讀實體扳手上的 QR Code（系統支援大小寫與自動送出）。",
+                manual_step2_3: "3. 系統將帶出該把扳手的「規格」、「需校驗次數」與「材檢編號」。",
+                manual_step2_4: "4. 拿起扳手在校驗器上施力，直到發出「喀喀」聲。校驗器會將數據自動傳送至系統。",
+                manual_step2_5: "5. 系統會依據規格自動判定 OK (合格) 或 NG (不合格)，並記錄至當日紀錄表中。",
+                manual_step2_tip: "💡 手動輸入模式：若未連接傳輸線，您依然可以刷讀扳手，系統會自動彈出「手動輸入視窗」。",
+                manual_step3_title: "週期狀態與未完成清單",
+                manual_step3_1: "1. 進度橫幅：主畫面上方的進度條會顯示當前週期內已完成的扳手數量比例。",
+                manual_step3_2: "2. 次數限制：每把扳手可能需要連續測試 2 次 (預設)，才算「本週期已達標」。請注意掃描後顯示的 ⏳ 尚需 X 次。",
+                manual_step3_3: "3. 未完成清單：點擊左下角 📋 週期未完成清單，可查看哪些扳手尚未校驗或未達規定次數。",
+                manual_step4_title: "常見問題與異常排除",
+                manual_step4_1: "🔹 無法連線校驗器？\n請確認是否已安裝「CP210x Windows Drivers」驅動程式。如未安裝，請至「進入管理後台 > 驅動程式下載」取得並安裝。",
+                manual_step4_2: "🔹 掃描後顯示「找不到代碼」？\n代表該把扳手未建檔於系統。請管理員進入「後台管理 > 扳手規格管理」新增或匯入該把扳手資料。",
+                manual_step4_3: "🔹 數據未傳送至畫面？\n請檢查傳輸線是否鬆脫。若出現「通訊中斷」，請點擊「退出系統」後重新登入並再次連線。",
+                manual_understood: "我瞭解了"
             },
             th: {
                 login_title: "ระบบตรวจสอบประแจปอนด์ CMC",
@@ -1578,7 +1606,36 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 waiting_conn: "● กำลังรอการเชื่อมต่อ",
                 connected_rs232: "✅ เชื่อมต่อแล้ว",
                 ready: "พร้อม",
-                wait: "รอ"
+                wait: "รอ",
+                cycle_progress_title: "ความคืบหน้ารอบการสอบเทียบ",
+                completed_prefix: "เสร็จแล้ว",
+                progress_unit: "ชิ้น",
+                cycle_done: "✅ บรรลุเป้าหมายรอบนี้แล้ว",
+                cycle_remain: "⏳ ต้องการอีก",
+                cycle_remain_unit: "ครั้ง",
+                manual_guide_title: "📖 คู่มือการใช้งานและขั้นตอน",
+                manual_step1_title: "การเชื่อมต่ออุปกรณ์และการเตรียมพร้อม",
+                manual_step1_1: "1. ใช้สาย USB เชื่อมต่อ 'เครื่องสอบเทียบแรงบิด' กับคอมพิวเตอร์",
+                manual_step1_2: "2. ที่แผงควบคุม 'ดำเนินการตรวจสอบ' ทางขวา คลิกปุ่ม 📡 เชื่อมต่อเครื่องวัด",
+                manual_step1_3: "3. หากเบราว์เซอร์แสดงหน้าต่างขออนุญาต ให้เลือก COM Port ที่ถูกต้องและอนุญาตการเชื่อมต่อ",
+                manual_step1_4: "4. เมื่อเชื่อมต่อสำเร็จ ปุ่มจะแสดงกรอบสีเขียวและสัญลักษณ์ ✅ แสดงว่าระบบพร้อมรับข้อมูลแล้ว",
+                manual_step1_tip: "💡 เคล็ดลับ: หากไม่สามารถเชื่อมต่อสายได้ในขณะนี้ สามารถข้ามขั้นตอนนี้และไปยังขั้นตอนถัดไปได้",
+                manual_step2_title: "ขั้นตอนการสแกนและสอบเทียบ",
+                manual_step2_1: "1. คลิกที่ช่องป้อนข้อมูล 'กรุณาสแกน QR Code ของประแจ' ทางซ้าย",
+                manual_step2_2: "2. ใช้เครื่องสแกนบาร์โค้ดสแกน QR Code บนตัวประแจ (รองรับตัวพิมพ์ใหญ่-เล็กและส่งอัตโนมัติ)",
+                manual_step2_3: "3. ระบบจะแสดง 'ข้อมูลจำเพาะ' จำนวนครั้งที่ต้องสอบเทียบ และรหัสตรวจสอบ",
+                manual_step2_4: "4. ใช้ประแจออกแรงบนเครื่องสอบเทียบจนได้ยินเสียง 'คลิก' เครื่องจะส่งข้อมูลไปยังระบบอัตโนมัติ",
+                manual_step2_5: "5. ระบบจะตัดสินผลโดยอัตโนมัติว่า OK (ผ่าน) หรือ NG (ไม่ผ่าน) และบันทึกลงตารางรายวัน",
+                manual_step2_tip: "💡 โหมดป้อนด้วยตนเอง: หากไม่ได้เชื่อมต่อสาย ยังสามารถสแกนประแจได้ ระบบจะแสดงหน้าต่างป้อนค่าด้วยตนเอง",
+                manual_step3_title: "สถานะรอบและรายการที่ยังไม่เสร็จ",
+                manual_step3_1: "1. แถบความคืบหน้า: แถบด้านบนแสดงสัดส่วนประแจที่สอบเทียบเสร็จแล้วในรอบปัจจุบัน",
+                manual_step3_2: "2. จำกัดจำนวนครั้ง: ประแจแต่ละอันอาจต้องทดสอบ 2 ครั้ง (ค่าเริ่มต้น) ให้สังเกตสัญลักษณ์ ⏳ ต้องการอีก X ครั้ง",
+                manual_step3_3: "3. รายการที่ยังไม่เสร็จ: คลิก 📋 รายการที่ยังไม่เสร็จ เพื่อดูว่าประแจใดยังไม่ได้สอบเทียบหรือยังไม่ครบจำนวน",
+                manual_step4_title: "ปัญหาที่พบบ่อยและการแก้ไข",
+                manual_step4_1: "🔹 ไม่สามารถเชื่อมต่อเครื่องวัดได้?\nโปรดตรวจสอบว่าได้ติดตั้งไดรเวอร์ CP210x Windows แล้วหรือไม่ หากยังไม่ได้ติดตั้งให้ไปที่ 'เข้าสู่ระบบจัดการ > ดาวน์โหลดไดรเวอร์'",
+                manual_step4_2: "🔹 สแกนแล้วแสดง 'ไม่พบรหัส'?\nแสดงว่าประแจนี้ยังไม่ได้บันทึกในระบบ ให้ผู้ดูแลระบบเพิ่มข้อมูลในหน้าจัดการ",
+                manual_step4_3: "🔹 ข้อมูลไม่ส่งมาที่หน้าจอ?\nตรวจสอบว่าสายเชื่อมต่อหลวมหรือไม่ หากพบ 'การสื่อสารขัดข้อง' ให้ออกจากระบบแล้วเข้าใหม่",
+                manual_understood: "เข้าใจแล้ว"
             }
         };
 
@@ -1671,6 +1728,57 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 resStatus.textContent = t('wait');
             } else if (resStatus && (resStatus.textContent === 'READY' || resStatus.textContent === 'พร้อม')) {
                 resStatus.textContent = t('ready');
+            }
+
+            // 進度條
+            safeSetText('ui_cycle_progress_title', t('cycle_progress_title'));
+            safeSetText('ui_completed_prefix', t('completed_prefix'));
+            safeSetText('ui_progress_unit', t('progress_unit'));
+
+            // 已連線的校驗器按鈕（disabled 狀態）
+            const btnSerial2 = document.getElementById('btnConnectSerial');
+            if (btnSerial2 && btnSerial2.disabled) {
+                btnSerial2.innerHTML = `<span class="text-xl">✅</span> ${t('connected_rs232')}`;
+            }
+            // 已連線的 miniStatus
+            const miniStatus2 = document.getElementById('miniConnStatus');
+            if (miniStatus2 && miniStatus2.classList.contains('serial-active')) {
+                miniStatus2.textContent = `● ${t('connected_rs232').replace('✅ ', '')}`;
+            }
+
+            // 操作教學 Modal
+            safeSetText('ui_manual_guide_title', t('manual_guide_title'));
+            safeSetText('ui_manual_step1_title', t('manual_step1_title'));
+            safeSetText('ui_manual_step1_1', t('manual_step1_1'));
+            safeSetText('ui_manual_step1_2', t('manual_step1_2'));
+            safeSetText('ui_manual_step1_3', t('manual_step1_3'));
+            safeSetText('ui_manual_step1_4', t('manual_step1_4'));
+            safeSetText('ui_manual_step1_tip', t('manual_step1_tip'));
+            safeSetText('ui_manual_step2_title', t('manual_step2_title'));
+            safeSetText('ui_manual_step2_1', t('manual_step2_1'));
+            safeSetText('ui_manual_step2_2', t('manual_step2_2'));
+            safeSetText('ui_manual_step2_3', t('manual_step2_3'));
+            safeSetText('ui_manual_step2_4', t('manual_step2_4'));
+            safeSetText('ui_manual_step2_5', t('manual_step2_5'));
+            safeSetText('ui_manual_step2_tip', t('manual_step2_tip'));
+            safeSetText('ui_manual_step3_title', t('manual_step3_title'));
+            safeSetText('ui_manual_step3_1', t('manual_step3_1'));
+            safeSetText('ui_manual_step3_2', t('manual_step3_2'));
+            safeSetText('ui_manual_step3_3', t('manual_step3_3'));
+            safeSetText('ui_manual_step4_title', t('manual_step4_title'));
+            safeSetText('ui_manual_step4_1', t('manual_step4_1'));
+            safeSetText('ui_manual_step4_2', t('manual_step4_2'));
+            safeSetText('ui_manual_step4_3', t('manual_step4_3'));
+            safeSetText('ui_manual_understood', t('manual_understood'));
+
+            // 週期剩餘標籤（如果已掃描扳手）
+            if (currentWrench && dbData) {
+                const ci = getWrenchCycleInfo(currentWrench, dbData.logs || []);
+                const rText = ci.isCompleted
+                    ? `${t('cycle_done')} (${ci.limit}/${ci.limit})`
+                    : `${t('cycle_remain')} ${ci.remaining} ${t('cycle_remain_unit')}`;
+                const rEl = document.getElementById('lblCycleRemain');
+                if (rEl && !rEl.classList.contains('hidden')) rEl.textContent = rText;
             }
         }
 
@@ -2761,7 +2869,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
             safeSetText('lblWrenchCode', wrenchData.code);
             safeSetText('lblInspectionId', wrenchData.inspectionId || '--');
             const cycleInfo = getWrenchCycleInfo(wrenchData, dbData.logs || []);
-            const remainText = cycleInfo.isCompleted ? `✅ 本週期已達標 (${cycleInfo.limit}/${cycleInfo.limit})` : `⏳ 本週期尚需 ${cycleInfo.remaining} 次`;
+            const remainText = cycleInfo.isCompleted ? `${t('cycle_done')} (${cycleInfo.limit}/${cycleInfo.limit})` : `${t('cycle_remain')} ${cycleInfo.remaining} ${t('cycle_remain_unit')}`;
 
             const remainEl = document.getElementById('lblCycleRemain');
             if (remainEl) {
@@ -2996,14 +3104,14 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 const wrapper = document.getElementById('serialConnWrapper');
                 switch (status) {
                     case "CONNECTED":
-                        btn.innerHTML = '<span class="text-xl">✅</span> 校驗器已連線';
+                        btn.innerHTML = `<span class="text-xl">✅</span> ${t('connected_rs232')}`;
                         btn.className = "w-full py-5 text-lg font-semibold text-[#248a3d] rounded-xl cursor-default flex items-center justify-center gap-2 bg-transparent border-0";
                         btn.disabled = true;
                         if (wrapper) {
                             wrapper.classList.remove('serial-disconnected-pulse');
                             wrapper.classList.add('serial-connected-glow');
                         }
-                        miniStatus.textContent = "● 校驗器已連線";
+                        miniStatus.textContent = `● ${t('connected_rs232').replace('✅ ', '')}`;
                         miniStatus.className = "text-xs text-[#34c759] font-semibold bg-[#34c759]/10 px-3 py-1.5 rounded-md serial-active";
                         // 解鎖核心功能按鈕
                         setSerialDependentButtons(true);
@@ -3220,8 +3328,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
 
             // 更新 UI 狀態
             const newCycleInfo = getWrenchCycleInfo(currentWrench, dbData.logs);
-            const remainText = newCycleInfo.isCompleted ? `已達標 (${newCycleInfo.limit}/${newCycleInfo.limit})` : `尚需 ${newCycleInfo.remaining} 次`;
-            safeSetText('lblSpecs', `${currentWrench.min} ~ ${currentWrench.max} kgf·m | 本週期: ${remainText}`);
+            safeSetText('lblSpecs', `${currentWrench.min} ~ ${currentWrench.max}`);
         }
 
         function getLocalISODate(date) {
@@ -4253,7 +4360,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
             class="bg-white/95 backdrop-blur-xl rounded-[2rem] w-full max-w-3xl flex flex-col max-h-[85vh] apple-shadow-lg border border-white/40 overflow-hidden">
             <!-- Header -->
             <div class="bg-gray-50/80 px-8 py-5 flex justify-between items-center border-b border-gray-100 shrink-0">
-                <h2 class="text-2xl font-bold text-[#1d1d1f] tracking-tight flex items-center gap-2">📖 操作教學與流程指南</h2>
+                <h2 id="ui_manual_guide_title" class="text-2xl font-bold text-[#1d1d1f] tracking-tight flex items-center gap-2">📖 操作教學與流程指南</h2>
                 <button onclick="hideModal('manualModal')"
                     class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 text-gray-600 hover:text-[#ff3b30] transition-colors font-bold text-lg">&times;</button>
             </div>
@@ -4264,65 +4371,60 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 <!-- Step 1 -->
                 <section>
                     <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-[#007aff]">
-                        <span
-                            class="bg-[#007aff]/10 text-[#007aff] w-8 h-8 flex items-center justify-center rounded-lg">1</span>
-                        設備連線與準備
+                        <span class="bg-[#007aff]/10 text-[#007aff] w-8 h-8 flex items-center justify-center rounded-lg">1</span>
+                        <span id="ui_manual_step1_title">設備連線與準備</span>
                     </h3>
                     <div class="pl-10 space-y-2 text-[15px] leading-relaxed text-[#1d1d1f]/80">
-                        <p>1. 使用 USB 傳輸線將「扭力校驗器 (扭力計)」連接至電腦。</p>
-                        <p>2. 在主畫面右方的「執行校驗」面板，點擊 <strong>📡 校驗器連線</strong> 按鈕。</p>
-                        <p>3. 若瀏覽器彈出授權視窗，請選擇對應的 <strong>COM Port</strong> 並允許連線。</p>
-                        <p>4. 連線成功後，按鈕會亮起 <span class="text-[#34c759] font-bold">綠色邊框與 ✅ 符號</span>，代表系統已準備好接收數據。</p>
-                        <p class="text-[#007aff] mt-2 font-medium">💡 <strong>提示：</strong> 若您當下無法連接實體傳輸線，可以跳過此步驟，直接進入下一步進行手動刷讀與填寫。</p>
+                        <p id="ui_manual_step1_1">1. 使用 USB 傳輸線將「扭力校驗器 (扭力計)」連接至電腦。</p>
+                        <p id="ui_manual_step1_2">2. 在主畫面右方的「執行校驗」面板，點擊 📡 校驗器連線 按鈕。</p>
+                        <p id="ui_manual_step1_3">3. 若瀏覽器彈出授權視窗，請選擇對應的 COM Port 並允許連線。</p>
+                        <p id="ui_manual_step1_4">4. 連線成功後，按鈕會亮起綠色邊框與 ✅ 符號，代表系統已準備好接收數據。</p>
+                        <p id="ui_manual_step1_tip" class="text-[#007aff] mt-2 font-medium">💡 提示：若您當下無法連接實體傳輸線，可以跳過此步驟，直接進入下一步進行手動刷讀與填寫。</p>
                     </div>
                 </section>
 
                 <!-- Step 2 -->
                 <section>
                     <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-[#007aff]">
-                        <span
-                            class="bg-[#007aff]/10 text-[#007aff] w-8 h-8 flex items-center justify-center rounded-lg">2</span>
-                        刷讀與校驗流程
+                        <span class="bg-[#007aff]/10 text-[#007aff] w-8 h-8 flex items-center justify-center rounded-lg">2</span>
+                        <span id="ui_manual_step2_title">刷讀與校驗流程</span>
                     </h3>
                     <div class="pl-10 space-y-2 text-[15px] leading-relaxed text-[#1d1d1f]/80">
-                        <p>1. 將游標停留在左側 <strong>「請刷讀扳手 QR Code」</strong> 的輸入框中。</p>
-                        <p>2. 使用條碼掃描槍刷讀實體扳手上的 QR Code（系統支援大小寫與自動送出）。</p>
-                        <p>3. 系統將帶出該把扳手的「規格」、「需校驗次數」與「材檢編號」。</p>
-                        <p>4. 拿起扳手在校驗器上施力，直到發出「喀喀」聲。校驗器會將數據自動傳送至系統。</p>
-                        <p>5. 系統會依據規格自動判定 <span class="text-[#34c759] font-bold">OK (合格)</span> 或 <span
-                                class="text-[#ff3b30] font-bold">NG (不合格)</span>，並記錄至當日紀錄表中。</p>
-                        <p class="text-[#007aff] mt-2 font-medium">💡 <strong>手動輸入模式：</strong> 若未連接傳輸線，您依然可以刷讀扳手，系統會自動彈出「手動輸入視窗」，讓您直接填寫量測數值以應對各種異常狀況。</p>
+                        <p id="ui_manual_step2_1">1. 將游標停留在左側「請刷讀扳手 QR Code」的輸入框中。</p>
+                        <p id="ui_manual_step2_2">2. 使用條碼掃描槍刷讀實體扳手上的 QR Code（系統支援大小寫與自動送出）。</p>
+                        <p id="ui_manual_step2_3">3. 系統將帶出該把扳手的「規格」、「需校驗次數」與「材檢編號」。</p>
+                        <p id="ui_manual_step2_4">4. 拿起扳手在校驗器上施力，直到發出「喀喀」聲。校驗器會將數據自動傳送至系統。</p>
+                        <p id="ui_manual_step2_5">5. 系統會依據規格自動判定 <span class="text-[#34c759] font-bold">OK (合格)</span> 或 <span class="text-[#ff3b30] font-bold">NG (不合格)</span>，並記錄至當日紀錄表中。</p>
+                        <p id="ui_manual_step2_tip" class="text-[#007aff] mt-2 font-medium">💡 手動輸入模式：若未連接傳輸線，您依然可以刷讀扳手，系統會自動彈出「手動輸入視窗」。</p>
                     </div>
                 </section>
 
                 <!-- Step 3 -->
                 <section>
                     <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-[#007aff]">
-                        <span
-                            class="bg-[#007aff]/10 text-[#007aff] w-8 h-8 flex items-center justify-center rounded-lg">3</span>
-                        週期狀態與未完成清單
+                        <span class="bg-[#007aff]/10 text-[#007aff] w-8 h-8 flex items-center justify-center rounded-lg">3</span>
+                        <span id="ui_manual_step3_title">週期狀態與未完成清單</span>
                     </h3>
                     <div class="pl-10 space-y-2 text-[15px] leading-relaxed text-[#1d1d1f]/80">
-                        <p>1. <strong>進度橫幅：</strong> 主畫面上方的進度條會顯示該單位「當前週期內已完成」的扳手數量比例。</p>
-                        <p>2. <strong>次數限制：</strong> 每把扳手可能需要連續測試 2 次 (預設)，才算「本週期已達標」。請隨時注意掃描後顯示的 <strong>⏳ 尚需 X
-                                次</strong>。</p>
-                        <p>3. <strong>未完成清單：</strong> 點擊左下角 <strong>📋 週期未完成清單</strong>，可隨時查看目前還有哪些扳手「尚未進行校驗」或「未達到規定次數」。
-                        </p>
+                        <p id="ui_manual_step3_1">1. 進度橫幅：主畫面上方的進度條會顯示當前週期內已完成的扳手數量比例。</p>
+                        <p id="ui_manual_step3_2">2. 次數限制：每把扳手可能需要連續測試 2 次 (預設)，才算「本週期已達標」。請注意掃描後顯示的 ⏳ 尚需 X 次。</p>
+                        <p id="ui_manual_step3_3">3. 未完成清單：點擊左下角 📋 週期未完成清單，可查看哪些扳手尚未校驗或未達規定次數。</p>
                     </div>
                 </section>
 
                 <!-- Step 4 -->
                 <section>
                     <h3 class="text-lg font-bold mb-3 flex items-center gap-2 text-[#ff9500]">
-                        <span
-                            class="bg-[#ff9500]/10 text-[#ff9500] w-8 h-8 flex items-center justify-center rounded-lg">!</span>
-                        常見問題與異常排除
+                        <span class="bg-[#ff9500]/10 text-[#ff9500] w-8 h-8 flex items-center justify-center rounded-lg">!</span>
+                        <span id="ui_manual_step4_title">常見問題與異常排除</span>
                     </h3>
                     <div class="pl-10 space-y-2 text-[15px] leading-relaxed text-[#1d1d1f]/80">
-                        <p>🔹 <strong>無法連線校驗器？</strong><br>請確認是否已安裝「CP210x Windows Drivers」驅動程式。如未安裝，請至「進入管理後台 >
-                            驅動程式下載」取得並安裝。</p>
-                        <p>🔹 <strong>掃描後顯示「找不到代碼」？</strong><br>代表該把扳手未建檔於系統。請管理員進入「後台管理 > 扳手規格管理」新增或匯入該把扳手資料。</p>
-                        <p>🔹 <strong>數據未傳送至畫面？</strong><br>請檢查傳輸線是否鬆脫。若出現「通訊中斷」，請點擊「退出系統」後重新登入並再次連線。</p>
+                        <p id="ui_manual_step4_1" style="white-space:pre-line">🔹 無法連線校驗器？
+請確認是否已安裝「CP210x Windows Drivers」驅動程式。如未安裝，請至「進入管理後台 > 驅動程式下載」取得並安裝。</p>
+                        <p id="ui_manual_step4_2" style="white-space:pre-line">🔹 掃描後顯示「找不到代碼」？
+代表該把扳手未建檔於系統。請管理員進入「後台管理 > 扳手規格管理」新增或匯入該把扳手資料。</p>
+                        <p id="ui_manual_step4_3" style="white-space:pre-line">🔹 數據未傳送至畫面？
+請檢查傳輸線是否鬆脫。若出現「通訊中斷」，請點擊「退出系統」後重新登入並再次連線。</p>
                     </div>
                 </section>
 
@@ -4331,6 +4433,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
             <!-- Footer -->
             <div class="bg-gray-50/80 px-8 py-5 border-t border-gray-100 flex justify-end shrink-0">
                 <button onclick="hideModal('manualModal')"
+                    id="ui_manual_understood"
                     class="bg-[#007aff] hover:bg-[#006ee6] text-white font-semibold py-2.5 px-8 rounded-xl shadow-sm transition-all active:scale-95">
                     我瞭解了
                 </button>
