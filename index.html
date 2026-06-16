@@ -852,6 +852,7 @@
                                 <select id="newUserLang" class="p-3 border border-gray-200 rounded-xl text-[15px] bg-gray-50 focus:bg-white transition-colors">
                                     <option value="zh">🇹🇼 中文 (ZH)</option>
                                     <option value="th">🇹🇭 泰文 (TH)</option>
+                                    <option value="zh_th">🇹🇼 🇹🇭 中/泰文 (ZH/TH)</option>
                                 </select>
                                 <button onclick="addUser()" class="bg-[#1d1d1f] hover:bg-[#333336] text-white rounded-xl text-[15px] font-semibold transition-all shadow-sm">新增 / 更新</button>
                             </div>
@@ -1454,7 +1455,13 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
         let currentLang = 'zh';
 
         function t(key) {
-            return i18n[currentLang][key] || i18n['zh'][key] || key;
+            if (currentLang === 'zh_th') {
+                const zhText = i18n['zh'][key] || key;
+                const thText = i18n['th'][key] || key;
+                if (zhText === thText) return zhText; // 避免中泰文相同或無翻譯時重複顯示
+                return zhText + ' / ' + thText;
+            }
+            return i18n[currentLang] ? (i18n[currentLang][key] || i18n['zh'][key] || key) : (i18n['zh'][key] || key);
         }
 
         function safeSetText(id, text) {
