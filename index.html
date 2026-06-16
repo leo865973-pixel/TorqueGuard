@@ -1680,6 +1680,22 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
             renderAdminLists(); // re-render dynamically
         }
 
+        function updateAdminLangUI() {
+            const activeLang = adminOverrideLang || currentLang || 'zh';
+            const langKeys = ['zh', 'th', 'zh_th'];
+            langKeys.forEach(key => {
+                const btn = document.querySelector('.admin-lang-btn-' + key);
+                if (!btn) return;
+                if (key === activeLang) {
+                    btn.classList.remove('grayscale', 'opacity-50');
+                    btn.classList.add('opacity-100');
+                } else {
+                    btn.classList.add('grayscale', 'opacity-50');
+                    btn.classList.remove('opacity-100');
+                }
+            });
+        }
+
         function changeLang(lang) {
             currentLang = lang;
             updateUIStrings();
@@ -3337,7 +3353,15 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 return;
             }
 
-            if (!dbData) return;
+            // 若 dbData 尚未設定，嘗試從 globalDbData 取得
+            if (!dbData) {
+                if (currentUnitCode && globalDbData && globalDbData[currentUnitCode]) {
+                    dbData = globalDbData[currentUnitCode];
+                } else {
+                    showAlert("錯誤", "單位資料未載入，請先選擇單位或重新整理頁面。");
+                    return;
+                }
+            }
             const currentAdminPass = dbData.superAdminPassword || 'admin';
             if (inputPass === currentAdminPass) {
                 hideModal('passwordModal');
