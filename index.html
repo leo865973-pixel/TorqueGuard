@@ -439,7 +439,7 @@
                 <div class="flex gap-2 pl-1">
                     <button onclick="showManual()"
                         class="bg-[#007aff]/10 text-[#007aff] hover:bg-[#007aff]/20 font-semibold px-4 py-1.5 rounded-lg transition-colors text-sm flex items-center gap-1">
-                        📖 操作教學
+                        📖 <span id="ui_btn_manual">操作教學</span>
                     </button>
                     <button onclick="triggerLogout()"
                         class="text-[#86868b] hover:text-[#ff3b30] font-semibold px-3 py-1.5 rounded-lg hover:bg-[#ff3b30]/10 transition-colors text-sm"
@@ -1461,7 +1461,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 cloud_syncing: "☁️ 雲端自動同步中",
                 connect_rs232: "📡 校驗器連線",
                 waiting_conn: "● 等待連線",
-                connected_rs232: "✅ 校驗器已連線",
+                connected_rs232: "校驗器已連線",
                 ready: "READY",
                 wait: "WAIT",
                 cycle_progress_title: "週期進度",
@@ -1492,7 +1492,8 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 manual_step4_1: "🔹 無法連線校驗器？\n請確認是否已安裝「CP210x Windows Drivers」驅動程式。如未安裝，請至「進入管理後台 > 驅動程式下載」取得並安裝。",
                 manual_step4_2: "🔹 掃描後顯示「找不到代碼」？\n代表該把扳手未建檔於系統。請管理員進入「後台管理 > 扳手規格管理」新增或匯入該把扳手資料。",
                 manual_step4_3: "🔹 數據未傳送至畫面？\n請檢查傳輸線是否鬆脫。若出現「通訊中斷」，請點擊「退出系統」後重新登入並再次連線。",
-                manual_understood: "我瞭解了"
+                manual_understood: "我瞭解了",
+                btn_manual: "操作教學"
             },
             th: {
                 login_title: "ระบบตรวจสอบประแจปอนด์ CMC",
@@ -1604,7 +1605,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 cloud_syncing: "☁️ กำลังซิงค์ข้อมูลคลาวด์อัตโนมัติ",
                 connect_rs232: "📡 เชื่อมต่อเครื่องวัด",
                 waiting_conn: "● กำลังรอการเชื่อมต่อ",
-                connected_rs232: "✅ เชื่อมต่อแล้ว",
+                connected_rs232: "เชื่อมต่อแล้ว",
                 ready: "พร้อม",
                 wait: "รอ",
                 cycle_progress_title: "ความคืบหน้ารอบการสอบเทียบ",
@@ -1635,7 +1636,8 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 manual_step4_1: "🔹 ไม่สามารถเชื่อมต่อเครื่องวัดได้?\nโปรดตรวจสอบว่าได้ติดตั้งไดรเวอร์ CP210x Windows แล้วหรือไม่ หากยังไม่ได้ติดตั้งให้ไปที่ 'เข้าสู่ระบบจัดการ > ดาวน์โหลดไดรเวอร์'",
                 manual_step4_2: "🔹 สแกนแล้วแสดง 'ไม่พบรหัส'?\nแสดงว่าประแจนี้ยังไม่ได้บันทึกในระบบ ให้ผู้ดูแลระบบเพิ่มข้อมูลในหน้าจัดการ",
                 manual_step4_3: "🔹 ข้อมูลไม่ส่งมาที่หน้าจอ?\nตรวจสอบว่าสายเชื่อมต่อหลวมหรือไม่ หากพบ 'การสื่อสารขัดข้อง' ให้ออกจากระบบแล้วเข้าใหม่",
-                manual_understood: "เข้าใจแล้ว"
+                manual_understood: "เข้าใจแล้ว",
+                btn_manual: "คู่มือการใช้งาน"
             }
         };
 
@@ -1746,7 +1748,8 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 miniStatus2.textContent = `● ${t('connected_rs232').replace('✅ ', '')}`;
             }
 
-            // 操作教學 Modal
+            // 操作教學 Modal 及按鈕
+            safeSetText('ui_btn_manual', t('btn_manual'));
             safeSetText('ui_manual_guide_title', t('manual_guide_title'));
             safeSetText('ui_manual_step1_title', t('manual_step1_title'));
             safeSetText('ui_manual_step1_1', t('manual_step1_1'));
@@ -3355,7 +3358,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                  <td class="font-medium">${l.code}</td>
                  <td>${l.measuredValue.toFixed(2)}</td>
                  <td class="${statusClass}">${l.status}</td>
-                 <td><button onclick="quickDeleteLog('${l.timestamp}', '${l.code}')" class="text-[#ff3b30] hover:bg-[#ff3b30]/10 font-semibold text-xs px-3 py-1.5 rounded-lg transition-colors">刪除</button></td>
+                 <td><button onclick="quickDeleteLog('${l.timestamp}', '${l.code}')" class="text-[#ff3b30] hover:bg-[#ff3b30]/10 font-semibold text-xs px-3 py-1.5 rounded-lg transition-colors">${t('del_btn')}</button></td>
             </tr>`;
             }).join('');
             tbody.innerHTML = rowsHtml;
@@ -4227,7 +4230,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
             const progress = total > 0 ? (completedCount / total) * 100 : 0;
             const pBar = document.getElementById('dashProgressBar');
             if (pBar) pBar.style.width = `${progress}%`;
-            safeSetText('dashProgressLabel', `${completedCount} / ${total} 把`);
+            safeSetText('dashProgressLabel', `${completedCount} / ${total} ${t('progress_unit')}`);
             safeSetText('dashProgressPercent', `${Math.round(progress)}%`);
         }
 
