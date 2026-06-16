@@ -710,7 +710,8 @@
             <!-- Admin Header -->
             <div
                 class="bg-white/80 backdrop-blur-md px-8 py-5 flex justify-between items-center border-b border-gray-200 shrink-0">
-                <h2 class="text-2xl font-bold text-[#1d1d1f] tracking-tight">後台管理</h2>
+                <h2 id="ui_admin_title" class="text-2xl font-bold text-[#1d1d1f] tracking-tight">後台管理</h2>
+                <div class="flex gap-2 ml-4 mr-auto"><button onclick="switchAdminLang('zh')" class="admin-lang-btn-zh grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all text-xl" title="中文">🇹🇼</button><button onclick="switchAdminLang('th')" class="admin-lang-btn-th grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all text-xl" title="泰文">🇹🇭</button></div>
                 <button onclick="hideModal('adminModal')"
                     class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-[#ff3b30] transition-colors font-bold text-lg">&times;</button>
             </div>
@@ -723,27 +724,27 @@
                     <ul class="space-y-1">
                         <li>
                             <button onclick="switchAdminTab('tab-wrench')" id="btn-tab-wrench" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors bg-white text-[#007aff] shadow-sm">
-                                <span class="text-lg">🔧</span> 扳手規格管理
+                                <span id="ui_tab_wrench">🔧 扳手規格管理</span>
                             </button>
                         </li>
                         <li>
                             <button onclick="switchAdminTab('tab-global')" id="btn-tab-global" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-[#1d1d1f] hover:bg-gray-200 transition-colors">
-                                <span class="text-lg">⚙️</span> 單位全域設定
+                                <span id="ui_tab_global">⚙️ 單位全域設定</span>
                             </button>
                         </li>
                         <li>
                             <button onclick="switchAdminTab('tab-users')" id="btn-tab-users" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-[#1d1d1f] hover:bg-gray-200 transition-colors">
-                                <span class="text-lg">👥</span> 人員與設備
+                                <span id="ui_tab_users">👥 人員與設備</span>
                             </button>
                         </li>
                         <li>
                             <button onclick="switchAdminTab('tab-system')" id="btn-tab-system" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-[#1d1d1f] hover:bg-gray-200 transition-colors">
-                                <span class="text-lg">📂</span> 系統與報表
+                                <span id="ui_tab_system">📂 系統與報表</span>
                             </button>
                         </li>
                         <li>
                             <button onclick="switchAdminTab('tab-security')" id="btn-tab-security" class="admin-tab-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-[#1d1d1f] hover:bg-gray-200 transition-colors">
-                                <span class="text-lg">🔒</span> 安全與通知
+                                <span id="ui_tab_security">🔒 安全與通知</span>
                             </button>
                         </li>
                     </ul>
@@ -755,18 +756,18 @@
                     <!-- Tab 1: Wrench Management -->
                     <div id="tab-wrench" class="admin-tab-content flex flex-col h-full">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                            <h3 class="font-bold text-2xl text-[#1d1d1f] tracking-tight">扳手規格管理</h3>
+                            <h3 id="ui_h3_wrench" class="font-bold text-2xl text-[#1d1d1f] tracking-tight">扳手規格管理</h3>
                             <div class="flex flex-wrap gap-2">
-                                <button onclick="downloadWrenchTemplate()" class="text-xs bg-white text-[#1d1d1f] px-3 py-2 rounded-lg font-semibold border border-gray-200 hover:bg-gray-50 shadow-sm transition-colors">📥 範本</button>
-                                <button onclick="document.getElementById('excelInput').click()" class="text-xs bg-[#007aff]/10 text-[#007aff] px-3 py-2 rounded-lg font-semibold border border-transparent hover:bg-[#007aff]/20 transition-colors">📤 匯入 (Excel)</button>
-                                <button onclick="exportToExcel()" class="text-xs bg-[#5856d6]/10 text-[#5856d6] px-3 py-2 rounded-lg font-semibold border border-transparent hover:bg-[#5856d6]/20 transition-colors">💾 匯出 (Excel)</button>
+                                <button onclick="downloadWrenchTemplate()" class="text-xs bg-white text-[#1d1d1f] px-3 py-2 rounded-lg font-semibold border border-gray-200 hover:bg-gray-50 shadow-sm transition-colors"><span id="ui_btn_template">📥 範本</span></button>
+                                <button onclick="document.getElementById('excelInput').click()" class="text-xs bg-[#007aff]/10 text-[#007aff] px-3 py-2 rounded-lg font-semibold border border-transparent hover:bg-[#007aff]/20 transition-colors"><span id="ui_btn_import">📤 匯入 (Excel)</span></button>
+                                <button onclick="exportToExcel()" class="text-xs bg-[#5856d6]/10 text-[#5856d6] px-3 py-2 rounded-lg font-semibold border border-transparent hover:bg-[#5856d6]/20 transition-colors"><span id="ui_btn_export">💾 匯出 (Excel)</span></button>
                                 <input type="file" id="excelInput" accept=".xlsx, .xls" class="hidden" onchange="importWrenchExcel(this)">
                             </div>
                         </div>
 
                         <!-- 新增/編輯區 -->
                         <div class="bg-white border border-gray-200 p-4 rounded-2xl mb-6 shadow-sm">
-                            <h4 class="text-[13px] font-semibold text-[#86868b] uppercase tracking-wider mb-3 px-1">新增 / 編輯扳手</h4>
+                            <h4 id="ui_add_edit_wrench" class="text-[13px] font-semibold text-[#86868b] uppercase tracking-wider mb-3 px-1">新增 / 編輯扳手</h4>
                             <div class="grid grid-cols-1 sm:grid-cols-6 gap-3">
                                 <input id="adminCode" placeholder="代碼" class="p-3 border border-gray-200 rounded-xl text-sm uppercase bg-gray-50 focus:bg-white transition-colors">
                                 <input id="adminInspectionId" placeholder="材檢編號" class="p-3 border border-gray-200 rounded-xl text-sm bg-gray-50 focus:bg-white transition-colors">
@@ -775,8 +776,8 @@
                                 <input id="adminDailyLimit" type="number" min="1" max="99" placeholder="次數限制" title="週期內應校驗次數（預設2）" class="p-3 border border-gray-200 rounded-xl text-sm bg-gray-50 focus:bg-white transition-colors">
                                 <input id="adminCalibInterval" type="number" min="1" max="365" placeholder="週期(天)" title="校驗週期天數（預設7）" class="p-3 border border-gray-200 rounded-xl text-sm bg-gray-50 focus:bg-white transition-colors">
                                 <div class="sm:col-span-6 flex gap-3 mt-1">
-                                    <button onclick="saveWrench()" class="flex-1 bg-[#1d1d1f] text-white py-3 rounded-xl text-[15px] font-semibold hover:bg-[#333336] transition-all shadow-sm">儲存 / 更新</button>
-                                    <button onclick="clearWrenchInput()" class="px-6 bg-gray-100 text-[#1d1d1f] py-3 rounded-xl text-[15px] font-semibold hover:bg-gray-200 transition-all border border-gray-200">清除</button>
+                                    <button onclick="saveWrench()" class="flex-1 bg-[#1d1d1f] text-white py-3 rounded-xl text-[15px] font-semibold hover:bg-[#333336] transition-all shadow-sm"><span id="ui_save_update">儲存 / 更新</span></button>
+                                    <button onclick="clearWrenchInput()" class="px-6 bg-gray-100 text-[#1d1d1f] py-3 rounded-xl text-[15px] font-semibold hover:bg-gray-200 transition-all border border-gray-200"><span id="ui_clear">清除</span></button>
                                 </div>
                             </div>
                         </div>
@@ -788,8 +789,8 @@
                                 <input type="text" id="searchWrenchId" placeholder="搜尋材檢編號..." class="p-2.5 border border-gray-200 rounded-xl text-sm bg-white shadow-sm w-full sm:w-40 focus:w-48 transition-all focus:ring-2 focus:ring-[#007aff]/20" oninput="renderAdminLists()">
                             </div>
                             <div class="flex gap-2 w-full sm:w-auto">
-                                <button id="btnBatchToggle" disabled onclick="batchToggleWrenches()" class="flex-1 sm:flex-none bg-orange-100 border border-orange-200 text-orange-700 hover:bg-orange-200 px-4 py-2.5 rounded-xl text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm">批次停用/啟用</button>
-                                <button id="btnBatchDelete" disabled onclick="batchDeleteWrenches()" class="flex-1 sm:flex-none bg-red-100 border border-red-200 text-red-700 hover:bg-red-200 px-4 py-2.5 rounded-xl text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm">批次永久移除</button>
+                                <button id="btnBatchToggle" disabled onclick="batchToggleWrenches()" class="flex-1 sm:flex-none bg-orange-100 border border-orange-200 text-orange-700 hover:bg-orange-200 px-4 py-2.5 rounded-xl text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm"><span id="ui_batch_toggle">批次停用/啟用</span></button>
+                                <button id="btnBatchDelete" disabled onclick="batchDeleteWrenches()" class="flex-1 sm:flex-none bg-red-100 border border-red-200 text-red-700 hover:bg-red-200 px-4 py-2.5 rounded-xl text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm"><span id="ui_batch_delete">批次永久移除</span></button>
                             </div>
                         </div>
 
@@ -799,12 +800,12 @@
                                 <thead>
                                     <tr>
                                         <th class="w-12 !text-center"><input type="checkbox" id="selectAllWrenches" class="apple-checkbox" onchange="toggleAllWrenches(this)"></th>
-                                        <th>代碼</th>
-                                        <th>材檢編號</th>
+                                        <th id="ui_th_code">代碼</th>
+                                        <th id="ui_th_insp">材檢編號</th>
                                         <th>範圍 (kgf·m)</th>
-                                        <th class="!text-center">次數限制</th>
-                                        <th class="!text-center">週期(天)</th>
-                                        <th class="!text-center">最後校驗</th>
+                                        <th id="ui_th_limit" class="!text-center">次數限制</th>
+                                        <th id="ui_th_cycle" class="!text-center">週期(天)</th>
+                                        <th id="ui_th_last_calib" class="!text-center">最後校驗</th>
                                         <th class="!text-center">狀態</th>
                                     </tr>
                                 </thead>
@@ -815,13 +816,13 @@
 
                     <!-- Tab 2: Global Settings -->
                     <div id="tab-global" class="admin-tab-content hidden max-w-2xl">
-                        <h3 class="font-bold text-2xl text-[#1d1d1f] tracking-tight mb-6">單位全域設定</h3>
+                        <h3 id="ui_h3_global" class="font-bold text-2xl text-[#1d1d1f] tracking-tight mb-6">單位全域設定</h3>
                         
                         <div class="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
                             <div class="p-5 border-b border-gray-200 flex justify-between items-center">
                                 <div>
-                                    <label class="text-[15px] font-semibold text-[#1d1d1f] block">預設週期校驗次數限制</label>
-                                    <span class="text-xs text-[#86868b]">新增扳手時帶入的預設值 (次)</span>
+                                    <label id="ui_global_limit_title" class="text-[15px] font-semibold text-[#1d1d1f] block">預設週期校驗次數限制</label>
+                                    <span id="ui_global_limit_sub" class="text-xs text-[#86868b]">新增扳手時帶入的預設值 (次)</span>
                                 </div>
                                 <div class="flex gap-2">
                                     <input type="number" id="globalDailyLimit" min="1" max="99" value="2" class="w-24 p-2.5 text-right border border-gray-200 rounded-lg text-[15px] bg-gray-50 focus:bg-white transition-colors">
@@ -829,23 +830,23 @@
                             </div>
                             <div class="p-5 flex justify-between items-center">
                                 <div>
-                                    <label class="text-[15px] font-semibold text-[#1d1d1f] block">預設校驗週期</label>
-                                    <span class="text-xs text-[#86868b]">新增扳手時帶入的預設值 (天)</span>
+                                    <label id="ui_global_cycle_title" class="text-[15px] font-semibold text-[#1d1d1f] block">預設校驗週期</label>
+                                    <span id="ui_global_cycle_sub" class="text-xs text-[#86868b]">新增扳手時帶入的預設值 (天)</span>
                                 </div>
                                 <input type="number" id="globalCalibInterval" min="1" max="365" value="7" class="w-24 p-2.5 text-right border border-gray-200 rounded-lg text-[15px] bg-gray-50 focus:bg-white transition-colors">
                             </div>
                         </div>
                         <div class="mt-6 flex justify-end">
-                            <button onclick="saveGlobalSettings()" class="bg-[#1d1d1f] hover:bg-[#333336] text-white px-8 py-3.5 rounded-xl text-[15px] font-semibold transition-all shadow-sm">儲存設定</button>
+                            <button onclick="saveGlobalSettings()" class="bg-[#1d1d1f] hover:bg-[#333336] text-white px-8 py-3.5 rounded-xl text-[15px] font-semibold transition-all shadow-sm"><span id="ui_save_settings">儲存設定</span></button>
                         </div>
                     </div>
 
                     <!-- Tab 3: Users & Devices -->
                     <div id="tab-users" class="admin-tab-content hidden max-w-3xl">
-                        <h3 class="font-bold text-2xl text-[#1d1d1f] tracking-tight mb-6">人員與設備</h3>
+                        <h3 id="ui_h3_users" class="font-bold text-2xl text-[#1d1d1f] tracking-tight mb-6">人員與設備</h3>
                         
                         <div class="mb-8">
-                            <h4 class="text-[13px] font-semibold text-[#86868b] uppercase tracking-wider mb-2 px-1">操作員管理</h4>
+                            <h4 id="ui_op_manage" class="text-[13px] font-semibold text-[#86868b] uppercase tracking-wider mb-2 px-1">操作員管理</h4>
                             <div class="bg-white p-4 rounded-2xl border border-gray-200 mb-4 grid grid-cols-1 sm:grid-cols-4 gap-3 shadow-sm">
                                 <input id="newUserName" placeholder="姓名" class="p-3 border border-gray-200 rounded-xl text-[15px] bg-gray-50 focus:bg-white transition-colors">
                                 <input id="newUserPass" placeholder="密碼" class="p-3 border border-gray-200 rounded-xl text-[15px] bg-gray-50 focus:bg-white transition-colors">
@@ -854,7 +855,7 @@
                                     <option value="th">🇹🇭 泰文 (TH)</option>
                                     <option value="zh_th">🇹🇼 🇹🇭 中/泰文 (ZH/TH)</option>
                                 </select>
-                                <button onclick="addUser()" class="bg-[#1d1d1f] hover:bg-[#333336] text-white rounded-xl text-[15px] font-semibold transition-all shadow-sm">新增 / 更新</button>
+                                <button onclick="addUser()" class="bg-[#1d1d1f] hover:bg-[#333336] text-white rounded-xl text-[15px] font-semibold transition-all shadow-sm"><span id="ui_op_save">新增 / 更新</span></button>
                             </div>
                             <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm bg-white">
                                 <ul id="adminUserList" class="max-h-60 overflow-y-auto text-[15px] divide-y divide-gray-100">
@@ -867,7 +868,7 @@
                             <h4 class="text-[13px] font-semibold text-[#86868b] uppercase tracking-wider mb-2 px-1">校正器設備列表</h4>
                             <div class="bg-white p-4 rounded-2xl border border-gray-200 mb-4 flex gap-3 shadow-sm">
                                 <input id="newCalibId" placeholder="輸入設備編號" class="flex-grow p-3 border border-gray-200 rounded-xl text-[15px] bg-gray-50 focus:bg-white transition-colors">
-                                <button onclick="addCalibrator()" class="bg-[#1d1d1f] hover:bg-[#333336] text-white px-6 rounded-xl text-[15px] font-semibold transition-all shadow-sm">新增</button>
+                                <button onclick="addCalibrator()" class="bg-[#1d1d1f] hover:bg-[#333336] text-white px-6 rounded-xl text-[15px] font-semibold transition-all shadow-sm"><span id="ui_add_btn">新增</span></button>
                             </div>
                             <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm bg-white">
                                 <ul id="adminCalibList" class="max-h-48 overflow-y-auto text-[15px] divide-y divide-gray-100">
@@ -879,7 +880,7 @@
 
                     <!-- Tab 4: System & Reports -->
                     <div id="tab-system" class="admin-tab-content hidden max-w-2xl">
-                        <h3 class="font-bold text-2xl text-[#1d1d1f] tracking-tight mb-6">系統與報表</h3>
+                        <h3 id="ui_h3_system" class="font-bold text-2xl text-[#1d1d1f] tracking-tight mb-6">系統與報表</h3>
 
                         <div class="space-y-8">
                             <div>
@@ -924,7 +925,7 @@
 
                     <!-- Tab 5: Security & Notifications -->
                     <div id="tab-security" class="admin-tab-content hidden max-w-2xl">
-                        <h3 class="font-bold text-2xl text-[#1d1d1f] tracking-tight mb-6">安全與通知</h3>
+                        <h3 id="ui_h3_security" class="font-bold text-2xl text-[#1d1d1f] tracking-tight mb-6">安全與通知</h3>
 
                         <div class="mb-8">
                             <h4 class="text-[13px] font-semibold text-[#86868b] uppercase tracking-wider mb-2 px-1">管理密碼變更</h4>
@@ -975,8 +976,8 @@
 
                                     <div class="flex justify-between items-center mb-5 pt-4 border-t border-gray-200">
                                         <div>
-                                            <span class="font-semibold text-[14px] text-[#1d1d1f] block">全數完成也發送通知</span>
-                                            <span class="text-[12px] text-[#86868b]">若該週期全數完成且無異常，依然發送完工回報</span>
+                                            <span id="ui_completion_notify" class="font-semibold text-[14px] text-[#1d1d1f] block">全數完成也發送通知</span>
+                                            <span id="ui_completion_sub" class="text-[12px] text-[#86868b]">若該週期全數完成且無異常，依然發送完工回報</span>
                                         </div>
                                         <label class="relative inline-flex items-center cursor-pointer">
                                             <input type="checkbox" id="notifyCompletionEnabled" class="sr-only peer" onchange="saveNotifyConfig()">
@@ -984,10 +985,10 @@
                                         </label>
                                     </div>
                                     <div class="pt-5 border-t border-gray-200">
-                                        <p class="text-[13px] font-semibold text-[#86868b] uppercase tracking-wider mb-3">收件人清單</p>
+                                        <p id="ui_recipient_list" class="text-[13px] font-semibold text-[#86868b] uppercase tracking-wider mb-3">收件人清單</p>
                                         <div class="flex gap-2 mb-4">
                                             <input type="email" id="newNotifyEmail" placeholder="輸入 Email..." class="flex-grow p-3 border border-gray-200 rounded-xl text-[15px] bg-white transition-colors" onkeyup="if(event.key==='Enter') addNotifyEmail()">
-                                            <button onclick="addNotifyEmail()" class="bg-[#1d1d1f] hover:bg-[#333336] text-white px-5 rounded-xl text-[15px] font-semibold transition-all shadow-sm">新增</button>
+                                            <button onclick="addNotifyEmail()" class="bg-[#1d1d1f] hover:bg-[#333336] text-white px-5 rounded-xl text-[15px] font-semibold transition-all shadow-sm"><span id="ui_add_btn">新增</span></button>
                                         </div>
                                         <div id="notifyEmailList" class="flex flex-wrap gap-2 max-h-32 overflow-y-auto"></div>
                                     </div>
@@ -1047,7 +1048,7 @@
                             <th>時間</th>
                             <th>設備</th>
                             <th>操作員</th>
-                            <th>代碼</th>
+                            <th id="ui_th_code">代碼</th>
                             <th>數值 (kgf·m)</th>
                             <th>結果</th>
                             <th>刪除</th>
@@ -1358,6 +1359,70 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 login_pass_ph: "操作員密碼",
                 login_btn: "登入系統",
                 login_admin: "⚙️ 進入後台設定",
+                admin_title: "後台管理",
+                tab_wrench: "🔧 扳手規格管理",
+                active_badge: "啟用",
+                inactive_badge: "停用",
+                uncalibrated: "未校驗",
+                edit_btn: "編輯",
+                del_btn: "刪除",
+                status_ok: "🟢 合格",
+                status_ng: "🔴 不合格",
+                status_unknown: "⚪ 未知",
+
+                tab_global: "⚙️ 單位全域設定",
+                tab_users: "👥 人員與設備",
+                tab_system: "📂 系統與報表",
+                tab_security: "🔒 安全與通知",
+                template: "<span id="ui_btn_template">📥 範本</span>",
+                import_excel: "<span id="ui_btn_import">📤 匯入 (Excel)</span>",
+                export_excel: "<span id="ui_btn_export">💾 匯出 (Excel)</span>",
+                add_edit_wrench: "新增 / 編輯扳手",
+                w_code: "代碼",
+                w_insp: "材檢編號",
+                w_limit: "次數限制",
+                w_cycle: "週期(天)",
+                save_update: "儲存 / 更新",
+                clear: "清除",
+                search_code: "搜尋代碼...",
+                search_insp: "搜尋材檢編號...",
+                batch_toggle: "批次停用/啟用",
+                batch_delete: "批次永久移除",
+                last_calib: "最後校驗",
+                global_limit_title: "預設週期校驗次數限制",
+                global_limit_sub: "新增扳手時帶入的預設值 (次)",
+                global_cycle_title: "預設校驗週期",
+                global_cycle_sub: "新增扳手時帶入的預設值 (天)",
+                save_settings: "儲存設定",
+                op_manage: "操作員管理",
+                op_name: "姓名",
+                op_pass: "密碼",
+                device_conn: "設備連線設定",
+                save_device: "儲存設備設定",
+                history_report: "歷史紀錄與報表",
+                view_history: "<span id="ui_view_history">🔍 檢視紀錄</span>",
+                sys_log: "系統日誌",
+                view_log: "<span id="ui_view_log">📋 檢視操作紀錄</span>",
+                sys_maint: "系統維護",
+                backup_db: "<span id="ui_backup_db">💾 備份資料庫 (JSON)</span>",
+                restore_db: "<span id="ui_restore_db">📂 匯入備份 (還原)</span>",
+                admin_pass_title: "管理員密碼",
+                change_pass: "變更密碼",
+                email_notify: "電子郵件自動通知",
+                enable_notify: "啟用自動報表",
+                daily: "每天",
+                weekly: "每週",
+                send_time: "傳送時間",
+                completion_notify: "全數完成也發送通知",
+                completion_sub: "若該週期全數完成且無異常，依然發送完工回報",
+                recipient_list: "收件人清單",
+                add_btn: "新增",
+                save_notify: "儲存通知設定",
+                test_email: "發送測試信",
+                history_title: "📊 歷史紀錄 & 週期未完成清單",
+                report_title: "📄 產生正式報表",
+                log_title: "📋 系統操作日誌"
+
                 connecting_cloud: "正在連接雲端資料庫...",
 
                 unit: "單位",
@@ -3210,6 +3275,16 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
         }
 
         function openAdminModal() {
+            if (!currentUser) {
+                // Entered from login screen
+                currentLang = adminOverrideLang || 'zh'; // Default to zh if entering admin without login
+            } else {
+                // Entered from UI
+                currentLang = currentUser.lang || 'zh';
+            }
+            updateAdminLangUI();
+            updateUIStrings();
+            
             showModal('adminModal');
             renderAdminLists();
         }
@@ -3238,13 +3313,13 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
             filteredWrenches.forEach(w => {
                 const tr = wt.insertRow();
                 const isChecked = selectedWrenches.includes(w.code) ? 'checked' : '';
-                const statusBadge = w.active ? '<span class="text-[#34c759] bg-[#34c759]/10 px-3 py-1 rounded-full text-xs font-semibold inline-block">啟用</span>' : '<span class="text-[#86868b] bg-gray-100 px-3 py-1 rounded-full text-xs font-semibold inline-block">停用</span>';
+                const statusBadge = w.active ? `<span class="text-[#34c759] bg-[#34c759]/10 px-3 py-1 rounded-full text-xs font-semibold inline-block">${t('active_badge')}</span>` : `<span class="text-[#86868b] bg-gray-100 px-3 py-1 rounded-full text-xs font-semibold inline-block">${t('inactive_badge')}</span>`;
                 const rowClass = w.active ? '' : 'opacity-60 bg-gray-50/50';
 
                 tr.className = `cursor-pointer hover:bg-gray-50 transition-colors ${rowClass}`;
                 const globalInterval = dbData.settings?.defaultCalibIntervalDays || 7;
                 const globalLimit = dbData.settings?.defaultDailyLimit || 2;
-                const lastCalib = w.lastCalibDate || '未校驗';
+                const lastCalib = w.lastCalibDate || t('uncalibrated');
                 const interval = w.calibIntervalDays || globalInterval;
                 const limit = w.dailyLimit || globalLimit;
                 tr.innerHTML = `
@@ -3277,7 +3352,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 li.innerHTML = `<span class="font-medium text-[#1d1d1f]">${c}</span>`;
                 const btn = document.createElement('button');
                 btn.className = "text-[#ff3b30] hover:bg-[#ff3b30]/10 font-semibold text-xs px-3 py-1.5 rounded-lg transition-colors";
-                btn.textContent = "刪除";
+                btn.textContent = t('del_btn');
                 btn.onclick = function () { confirmDelCalib(c); };
                 li.appendChild(btn);
                 cl.appendChild(li);
@@ -3295,7 +3370,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
 
                 const editBtn = document.createElement('button');
                 editBtn.className = "text-[#007aff] hover:bg-[#007aff]/10 font-semibold text-xs px-3 py-1.5 rounded-lg transition-colors";
-                editBtn.textContent = "編輯";
+                editBtn.textContent = t('edit_btn');
                 editBtn.onclick = function () {
                     document.getElementById('newUserName').value = u.name;
                     document.getElementById('newUserPass').value = u.password;
@@ -3304,7 +3379,7 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
 
                 const delBtn = document.createElement('button');
                 delBtn.className = "text-[#ff3b30] hover:bg-[#ff3b30]/10 font-semibold text-xs px-3 py-1.5 rounded-lg transition-colors";
-                delBtn.textContent = "刪除";
+                delBtn.textContent = t('del_btn');
                 delBtn.onclick = function () { confirmDelUser(u.name); };
 
                 btnGroup.appendChild(editBtn);
