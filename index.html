@@ -1783,6 +1783,11 @@ BY USING THIS SOFTWARE YOU AGREE TO THE TERMS OF THIS LICENSE AGREEMENT WITH SIL
                 const rEl = document.getElementById('lblCycleRemain');
                 if (rEl && !rEl.classList.contains('hidden')) rEl.textContent = rText;
             }
+
+            // 更新儀表板動態文字（如 40/88 把）
+            if (typeof refreshDashboard === 'function' && dbData) {
+                refreshDashboard();
+            }
         }
 
         let adminOverrideLang = null; // store admin-specific lang preference
